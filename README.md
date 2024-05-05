@@ -112,12 +112,7 @@ DISCUSIÓN DEL PROGRAMA WEBGOAT
 WebGoat es una aplicación desarrollada por OWASP diseñada para enseñar a desarrolladores y profesionales de seguridad sobre vulnerabilidades en aplicaciones web mediante un entorno educativo interactivo y práctico. Esta herramienta, que incluye una amplia gama de lecciones sobre fallos de seguridad comunes como inyección SQL y XSS, es ideal para formación corporativa y educación superior, ofreciendo un recurso gratuito y abierto para mejorar la conciencia de seguridad y la habilidad en programación segura. Sin embargo, WebGoat debe usarse exclusivamente en entornos de prueba, ya que está intencionadamente llena de fallos de seguridad y requiere actualizaciones constantes para mantenerse relevante ante nuevas técnicas de explotación.
 
 
-2. 
-
-a. Definición de la aplicación y cómo ejecutarla. – Por favor, incluir un apartado en donde se especifiquen los miembros del grupo junto al enlace del repositorio usado en la actividad anterior.
-b. Consideraciones de seguridad hechas durante el diseño de la aplicación.
-
-Documentación de la Aplicación WebGoat.
+2. Documentación de la Aplicación WebGoat.
 
 
 1. Definición de la Aplicación.
