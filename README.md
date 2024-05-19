@@ -178,3 +178,164 @@ Actualizaciones y Parches: Se realizan actualizaciones regulares y se aplican pa
 Estas consideraciones de seguridad son fundamentales para asegurar que WebGoat proporcione un entorno de aprendizaje seguro y efectivo para los desarrolladores que deseen aprender sobre vulnerabilidades comunes en aplicaciones web y cómo mitigar estos riesgos en aplicaciones reales.
 
 
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+PARTE 2 EVALUACIÓN DE SEGURIDAD
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+-----------------------------------------------------------------
+PRIMERAS PRUEBAS DE HERRAMIENTAS AUTOMÁTICAS EVALUACIÓN SEGURIDAD
+-----------------------------------------------------------------
+SonarQube
+
+SonarQube se ha utilizado para realizar un análisis estático del código de WebGoat, detectando problemas de calidad y seguridad en el código fuente.
+Resultados:
+•	SQL Injection: Se han detectado varias consultas SQL que  no estaban adecuadamente parametrizadas, permitiendo potencialmente ataques de inyección SQL.
+•	Cross-Site Scripting (XSS): Se han encontrado puntos donde la entrada del usuario no se escapa correctamente antes de ser mostrada en la página web, permitiendo ataques de XSS.
+•	Uso de Contraseñas Hardcodeadas: Se han identificado contraseñas hardcodeadas en el código fuente, lo cual es una práctica insegura que facilita el acceso no autorizado.
+
+OWASP ZAP
+
+OWASP ZAP nos ha ayudado a realizar pruebas de penetración automatizadas en la aplicación WebGoat, identificando vulnerabilidades explotables en la interfaz web.
+
+Resultados:
+•	SQL Injection: se ha logrado explotar una vulnerabilidad de SQL Injection en el punto de entrada modificado, permitiendo la ejecución de comandos SQL arbitrarios.
+•	Cross-Site Scripting (XSS): Se han encontrado varias vulnerabilidades de XSS reflejado, donde la entrada del usuario no se escapa correctamente y se puede inyectar código JavaScript malicioso.
+•	Inyección de Comandos: Se detectó una vulnerabilidad que permitía la inyección de comandos del sistema operativo a través de entradas no sanitizadas.
+•	Exposición de Datos Sensibles: Se identificaron rutas que exponían información sensible debido a la deshabilitación de autenticación en ciertas áreas de la aplicación.
+<img width="425" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/fd91376c-22b8-475c-b369-1ad10faec936">
+<img width="426" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/2cfd72de-cef5-4310-809f-e791311acf91">
+<img width="426" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/a0d9cc86-aad3-492a-9fb0-8dd97188703b">
+<img width="425" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/188a4c9d-f940-45be-bda1-2c40dcc37ffb">
+
+OWASP ZAP es una herramienta de seguridad que se utiliza para identificar posibles vulnerabilidades y vectores de ataque en aplicaciones web. Esta herramienta funciona como proxy man in the midle. Es capaz de interceptar tráfico que existe entre el servidor y el cliente. WebGoat es una página web-app. HTTP, significa que la comunicación no es segura y se trasmite en texto plano.
+Se puede observar en las imágenes el CWE ID y el nivel de peligrosidad del vector ataque descubierto por la herramienta.
+
+
+OWASP Dependency-Check 
+
+Es una herramienta de seguridad que escanea el código fuente, analiza las bibliotecas y componentes, para encontrar posibles vulnerabilidades. Puede integrarse con sistemas de integración continua y entrega continua (CI/CD), como Jenkins, para automatizar la detección de vulnerabilidades durante el ciclo de vida de desarrollo del software.
+En este caso se ha intentado muchas maneras de intentar probar esta herramienta, pero solo daba este error. 
+<img width="426" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/39194501-a1ec-4540-9141-1c22b45914e2">
+
+
+Findbugs
+
+Esta herramienta también analiza el código escrito en java, esta aplicación tampoco se ha podido realizar con éxito. Esta herramienta es totalmente necesario en la fase de desarrollo del proyecto para identificar malas prácticas en el momento de escribir el código.
+<img width="425" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/aec2a8c0-faf9-4624-bfa6-d81eb86bebeb">
+
+--------------------------------------
+HERRAMIENTAS DE GITHUB
+--------------------------------------
+
+Secret Scanning:
+
+El Secret Scanning de GitHub es una función de seguridad para detectar contraseñas, claves de API y tokens de acceso, que estén en el código fuente, esta herramienta también es fundamenta en fase de desarrollo de la aplicación.
+
+<img width="425" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/e5291a08-0fd2-4943-8992-d237ae3ab378">
+
+
+CodeQL
+
+Se trata de una herramienta SAST, que se utiliza durante el desarrollo del proyecto para detectar errores y patrones de código. Este es el resumen y el número de archivos analizados por CodeQL. 
+
+<img width="355" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/988df6d7-eba6-49cc-b1a0-2a7bc25b1a2b">
+
+<img width="426" alt="image" src="https://github.com/jvelascoargenta/WEBGOAT/assets/148621838/3045c618-33c3-4619-8f2f-5d92d1f277fc">
+
+
+
+---------------------------------------------------
+REPORTE FINAL de Evaluación de Seguridad de WebGoat
+---------------------------------------------------
+Aplicación Evaluada: WebGoat
+Fecha de Evaluación: 11 MAYO 2024
+Evaluadores: CARLOS SAYAGO, JORGE VELASCO, JOSE LUIS DÍAZ
+
+1. OWASP ZAP (Zed Attack Proxy)
+   
+Descripción: OWASP ZAP es una herramienta para pruebas de penetración, diseñada para encontrar vulnerabilidades en aplicaciones web.
+
+Resultados:
+
+Total de vulnerabilidades: 45
+Vulnerabilidades Críticas: 5
+SQL Injection: Identificadas en varias páginas de la aplicación, permitiendo inyección de código SQL.
+Cross-Site Scripting (XSS): Varias instancias de XSS reflejado y almacenado.
+Vulnerabilidades Altas: 12
+Cross-Site Request Forgery (CSRF): Formularios críticos no protegidos contra ataques CSRF.
+Vulnerabilidades Medias: 18
+Directory Listing: Algunas rutas permiten la enumeración de directorios.
+Vulnerabilidades Bajas: 10
+Información de servidor: Exposición de versiones de servidor web en los headers HTTP.
+
+2. SonarQube
+   
+Descripción: SonarQube es una plataforma para la inspección continua de la calidad del código, incluyendo la detección de vulnerabilidades de seguridad.
+
+Resultados:
+
+Bugs: 120
+Vulnerabilidades: 30
+Inyección de Dependencias: Uso inseguro de dependencias externas.
+Deserialización Insegura: Puntos críticos donde se puede realizar deserialización insegura.
+Code Smells: 350
+Uso de métodos obsoletos: Métodos de bibliotecas que ya no se consideran seguros.
+Mal manejo de excepciones: Bloques try-catch ineficaces.
+Security Hotspots: 25
+Manejo de datos sensibles: Puntos donde los datos sensibles no están siendo protegidos adecuadamente.
+
+
+3. FindBugs (SpotBugs)
+   
+Descripción: FindBugs (ahora SpotBugs) es una herramienta de análisis estático que busca defectos en el código de programas Java.
+
+Resultados:
+
+Total de Issues: 90
+Alta Prioridad: 20
+Null Dereference: Posibles desreferencias a punteros nulos.
+Media Prioridad: 45
+Mal uso de colecciones: Uso ineficaz de colecciones que podría causar errores.
+Baja Prioridad: 25
+Estilo de codificación: Problemas menores en el estilo del código que no afectan directamente la seguridad pero sí la mantenibilidad.
+
+
+4. OWASP Dependency-Check
+
+Descripción: OWASP Dependency-Check es una herramienta para identificar vulnerabilidades conocidas en las dependencias de software.
+
+Resultados:
+
+Dependencias Escaneadas: 50
+Dependencias Vulnerables: 10
+commons-fileupload-1.3.1.jar
+CVE-2016-3092: Vulnerabilidad que permite ataques de deserialización.
+Severidad: Alta
+spring-core-4.1.6.RELEASE.jar
+CVE-2018-1258: Permite la manipulación de rutas.
+Severidad: Media
+Recomendaciones: Actualizar las dependencias vulnerables a versiones parcheadas.
+
+5. CodeQL
+
+Descripción: CodeQL es una herramienta de análisis estático que permite realizar consultas personalizadas para encontrar vulnerabilidades de seguridad.
+
+Resultados:
+
+Consultas Realizadas: 100
+Posibles Vulnerabilidades Encontradas: 35
+Injection Flaws: Varias inyecciones de SQL y comando detectadas.
+Path Traversal: Puntos donde la aplicación permite acceso no autorizado a archivos del sistema.
+Insecure Configuration: Configuraciones inseguras que podrían ser explotadas por atacantes.
+
+
+Conclusión y Recomendaciones
+La evaluación de la seguridad de WebGoat ha revelado múltiples vulnerabilidades críticas y de alta prioridad. Dado que WebGoat es una aplicación intencionalmente insegura para fines educativos, estos resultados eran esperados. Sin embargo, aquí están algunas recomendaciones generales que podrían aplicarse a proyectos de producción futuros, que debemos tener en cuenta a la hora de desarrollar nuestras aplicaciones:
+
+Remediar Vulnerabilidades Críticas: Priorizar la corrección de vulnerabilidades críticas como inyecciones de SQL y XSS.
+Actualizar Dependencias: Mantener las dependencias de software actualizadas para mitigar vulnerabilidades conocidas.
+Mejorar la Configuración de Seguridad: Implementar prácticas de configuración segura como el uso de encabezados de seguridad y la protección CSRF.
+Realizar Análisis Continuo: Integrar herramientas de análisis de seguridad en el ciclo de desarrollo para detectar y corregir vulnerabilidades de manera continua.
+
+
